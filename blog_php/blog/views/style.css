@@ -1,0 +1,61 @@
+.Site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.Site-content {
+    flex: 1;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    min-height: 20px;
+    background-color: #6f6f6f;
+    color: aliceblue;
+}
+h1 {
+    margin-left: 50px;
+}
+
+.article {
+    margin: 0 40px 40px 50px;
+}
+
+.admin-table{
+    width: 80%;
+    margin: 20px 0 20px 0;
+}
+
+td, th {
+    padding: 10px 0 10px 0;
+}
+
+a {
+    padding: 10px;
+    text-decoration: none;
+    color: #008ba2;
+    margin: 10px;
+    background-color: aliceblue;
+    border: 2px;
+    border-color: aliceblue;
+    /*text-transform: uppercase;*/
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+a:hover{
+    background-color: #c2fff3;
+}
+
+.form-item {
+    width: 600px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.btn {
+    margin: 30px 0 0 10px;
+}

@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Admin Panel"
+AuthUserFile /storage/ssd2/711/5678711/public_html/admin/.htpasswd
+Require valid-user
