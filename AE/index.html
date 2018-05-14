@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>ДЗ по JS</title>
+</head>
+
+<body class="Site">
+
+<header>
+    <div class="container">
+        <p>Хедер.</p>
+    </div>
+</header>
+
+<main class="Site-content container">
+
+    <p> Для запуска скрипта, нужно жмакнуть по кнопке. </p>
+    <div class="flex-container">
+        <div>
+            <input class="bat" type="button" name="hello"
+                   value="1 Градусы цельсия" OnClick="loadScript('tCel','js/hw_1_1.js');">
+            <input class="bat" type="button" name="hello"
+                   value="2 Вывод админа" OnClick="loadScript('adm','js/hw_1_2.js');">
+            <input class="bat" type="button" name="hello"
+                   value="3 Примеры с 10" OnClick="loadScript('ind10','js/hw_1_3.js');">
+            <input class="bat" type="button" name="hello"
+                   value="4 async и defer " OnClick="loadScript('async_defer','js/hw_1_4.js');">
+            <input class="bat" type="button" name="hello"
+                   value="5 Счастливый билет " OnClick="loadScript('nTiket','js/hw_1_5.js');">
+        </div>
+        <div>
+            <input class="bat" type="button" name="hello"
+                   value=" 1 Порядок расчетов " OnClick="loadScript('abcd','js/hw_2_1.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 2 последовательность действий " OnClick="loadScript('sequencing','js/hw_2_2.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 3 a и b " OnClick="loadScript('AiB','js/hw_2_3.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 4 вывод до 15 " OnClick="loadScript('abcd','js/hw_2_4.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 5 +, -, /, * " OnClick="loadScript('pmdu','js/hw_2_5.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 6 mathOperat " OnClick="loadScript('mathOperat','js/hw_2_6.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 7 null " OnClick="loadScript('null','js/hw_2_7.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 8 рекурсия " OnClick="loadScript('recurs','js/hw_2_8.js');">
+            <input class="bat" type="button" name="hello"
+                   value=" 9 зачисление рублей. " OnClick="loadScript('rub','js/hw_2_9.js');">
+        </div>
+    </div>
+    <!--<div class="bat">-->
+    <!--<input type="button" value="Script2!"-->
+    <!--name="hello" OnClick="vInfo('kod6');">-->
+    <!--</div>-->
+
+    <div id="info"></div>
+    <br>
+    <div id="descript"></div>
+    <br>
+    <div id="decision"></div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>Футер.</p>
+    </div>
+
+</footer>
+
+<script language="javascript">
+
+    // /**
+    //  * выводит в div с id "info" указанную информацию.
+    //  */
+    // function vInfo(inf) {
+    //     document.getElementById('info').innerHTML = `${inf}`;
+    // }
+
+    /** Функция подключает внешний файл .js перед закрывающим тегом body.
+     * Если скрипт с указанным id уже создан, то этот элемент script будет удален из body.
+     * Чтобы браузер не ругался на повторно определяемые переменные, при перезапуске внешнего скрипта,
+     * код скрипта, в подключаемом файле, нужно обернуть в функцию.
+     * @param aidi значение id приваемое элементу script при создании этого элемента.
+     * (При повторном обращении, к этой функции, ранее созданный элемент с этим id будет удаляться.)
+     * @param url строка с папкой и именем файла js. ( Например js/script.js )
+     */
+    function loadScript(aidi, url) {
+        let card = document.getElementById(aidi);
+        // console.log(card);
+        if (card === null) {
+            let script = document.createElement('script');
+            script.id = aidi;
+            script.src = url;
+            document.getElementsByTagName('body')[0].appendChild(script);
+            document.getElementById('info').innerHTML = `Запущен скрипт ${url}`
+        } else {
+            remove(document.getElementById(aidi));
+            document.getElementById('info').innerHTML = 'Этот скрипт уже запускался. Для перезапуска нажмите кнопку еще раз.'
+        }
+    }
+
+    /**
+     * удаляет из html элемент с указанным elem
+     * @param elem это id элемента который необходимо удалить.
+     * @returns {Node}
+     */
+    function remove(elem) {
+        return elem.parentNode ? elem.parentNode.removeChild(elem) : elem;
+    }
+
+</script>
+</body>
+</html>
