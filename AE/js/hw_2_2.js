@@ -6,7 +6,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
    let a = 2;<br>
    let x = 1 + (a *= 2);
 </p>`;
-
+console.clear();
 f();
 
 function f() {

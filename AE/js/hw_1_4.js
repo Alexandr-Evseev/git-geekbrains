@@ -4,7 +4,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
 4. Самостоятельно разобраться с атрибутами тега script 
 (async и defer), описать комментариями для чего они, чем отличаются. 
 </p>`;
-
+console.clear();
 f();
 
 function f() {

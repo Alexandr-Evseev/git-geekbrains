@@ -1,48 +1,209 @@
 "use strict";
 
 
-document.getElementById('descript').innerHTML = `<p> Задача:
-1 Написать функцию, преобразующую число в объект. Передавая на вход число в диапазоне [0,
-999],
-мы должны получить на выходе объект, в котором в соответствующих свойствах описаны
-разряды числа:
-- единицы (в свойстве frsttigit)
-- десятки (в свойстве secondtigit)
-- сотни (в свойстве thirdtigit)
-Например, для числа 45 мы должны получить следующий объект:
-\`\`\`
-{
-frsttigit: 5,
-secondtigit: 4,
-thirdtigit: 0,
-}
-\`\`\`
-Если число было передано вне [0, 999] диапазона, не целое число или вообще не число,
-необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+document.getElementById('descript').innerHTML = `<p> <br> Задача:<br>
+На базе игры (приняв за пример), созданной на уроке, реализовать игру «Кто хочет стать
+миллионером?».<br>
+Т.е. у вас должен быть главный объект содержащий всю логику игры, который будет иметь
+методы, например
+метод run, возможно метод init и т.д.<br>
+В игре должны быть заранее подготовлены список вопросов и ответов (как минимум 5 вопросов).<br>
+Игра должна приветствовать пользователя, после чего задавать вопросы пользователю и
+предлагать варианты
+ответов в виде теста, например:<br>
+Сколько букв в слове "привет":<br>
+a. Пять.<br>
+b. Шесть.<br>
+c. Семь.<br>
+d. Куда я попал?<br>
+Проверять правильный вариант выбрал пользователь или нет, необходимо вести счет.<br>
+По окончании игры, когда было задано 5 вопросов, вы должны сообщить пользователю его счет и
+предложить
+сыграть снова.<br>
+Также должна быть возможность выхода из игры заранее, если пользователю надоело играть.
 </p>`;
 
 
 function f() {
 
-    function getDigitsOfNumber(num) {
-        if (!Number.isInteger(num) || num < 0 || num > 999) {
-            console.log('Значение аргумента должно быть целым числом в диапазоне [ 0 ... 999].');
-            return {};
+  /**
+   * @type {object[]} массив с обьектами вопросов.
+   */
+  const question = [
+    {
+      text: 'Сколько букв в слове "привет"?',
+      variants: {
+        a: ' Пять. ',
+        b: ' Шесть. ',
+        c: ' Семь. ',
+        d: ' Куда я попал? ',
+      },
+      correctAnswerIndex: 'b',
+    },
+    {
+      text: 'Загадка 2',
+      variants: {
+        a: ' правильный ',
+        b: ' не правильный',
+        c: ' не правильный',
+        d: ' не правильный',
+      },
+      correctAnswerIndex: 'a',
+    },
+    {
+      text: 'Загадка 3',
+      variants: {
+        a: ' правильный ',
+        b: ' не правильный',
+        c: ' не правильный',
+        d: ' не правильный',
+      },
+      correctAnswerIndex: 'a',
+    },
+    {
+      text: 'Загадка 4',
+      variants: {
+        a: ' правильный ',
+        b: ' не правильный',
+        c: ' не правильный',
+        d: ' не правильный',
+      },
+      correctAnswerIndex: 'a',
+    },
+    {
+      text: 'Загадка 5',
+      variants: {
+        a: ' правильный ',
+        b: ' не правильный',
+        c: ' не правильный',
+        d: ' не правильный',
+      },
+      correctAnswerIndex: 'a',
+    }
+  ];
+
+  /**
+   * @property {questions} questions массив с обьектами вопросов.
+   * @property {int} scoreCount Счетчик правильных ответов.
+   * @property {int} questionIndex индекс текущего вопроса из массива questions.
+   */
+  const game = {
+    question,
+    scoreCount: null,
+    questionIndex: null,
+    /**
+     * Инициализация игры.
+     */
+    init() {
+      this.scoreCount = 0;
+      this.questionIndex = 0;
+    },
+    /**
+     * Запуск игры.
+     */
+    run() {
+      this.init();
+      alert(' Здравствуйте! Игра начинается.');
+
+      while (1) {
+        const answer = this.getAnswer();
+        if (this.userWantExit(answer)) {
+          alert('Досвидания');
+          break;
+        }
+        if (this.isAnswerCorrect(answer)) {
+          alert('Это правильный ответ.');
+          this.scoreCount++;
+        }else {
+          alert('К сожалению, это ошибка');
         }
 
-        const obj = {};
+        this.questionIndex++;
 
-        obj.frsttigit = num % 10;
-        obj.secondtigit = Math.floor(num / 10) % 10;
-        obj.thirdtigit = Math.floor(num / 100) % 10;
+        if (this.isGameOver()){
+          alert(`Ваш счет: ${this.scoreCount}`);
 
-        return obj;
-    }
+          if (!confirm('Хотите сыграть еще?')){
 
-console.log(getDigitsOfNumber(833))
+            break;
+          }
 
-    document.getElementById('decision').innerHTML =`
-        Ответ выведен в консоль.
-       `;
+          this.init();
+        }
+      }
+    },
+    /**
+     * Проверяет количество заданных вопросов до конца игры.
+     * @return {boolean}
+     */
+    isGameOver(){
+      return this.questionIndex > 4;
+    },
+    /**
+     * Проверяет введен ли правильный ответ на заданный вопрос.
+     * @param {string} userAnswer Ответ пользователя
+     * @returns {boolean} true, если ответ верный, иначе false.
+     */
+    isAnswerCorrect(userAnswer){
+      return this.question[this.questionIndex].correctAnswerIndex === userAnswer;
+    },
+    /**
+     * Проверяет хочет ли пользователь выйти из игры.
+     * @param {string} answer Ответ пользователя
+     * @returns {boolean} true, если ответ верный, иначе false.
+     */
+    userWantExit(answer){
+      return answer === 'exit';
+    },
+    /**
+     * Получает от пользователя ответ на загадку.
+     * @returns {string} Строка ответа пользователя.
+     */
+    getAnswer() {
+      while (1) {
+
+        let answer = prompt(this.getCurrentQuestionString());
+
+        if (answer === null) {
+          alert(` Если вы хотите выйти, наберите "exit"`);
+          continue;
+        }
+        answer = answer.trim().toLowerCase(); // trim убирает пробелы по бокам. toLowerCase переводит весь текст в нижний регистр.
+
+        if (!this.validateAnswer(answer)) {
+          alert('Необходимо выбрать один из предложенных вариантов ответа.');
+          continue;
+        }
+        return answer;
+      }
+    },
+    /**
+     * Возвращает строку с текущим вопросом и вариантами ответов.
+     * @return {string} строку с текущим вопросом и вариантами ответов.
+     */
+    getCurrentQuestionString() {
+      const questions = this.question[this.questionIndex];
+      let questionString = `Вопрос: ${questions.text}.\n\n Варианты ответов: \n `;//${questions.variants}.`
+      for (const key in questions.variants) {
+        if (questions.variants.hasOwnProperty(key)) {
+          questionString += `${key} - ${questions.variants[key]}\n`;
+        }
+      }
+
+      return questionString;
+    },
+    /**
+     * Проверяем ответ пользователя на корректность ввода.
+     * @param {string} userAnswer Ответ пользователя.
+     * @return {boolean} true если введена строка перечисленная в массиве, иначе false.
+     */
+    validateAnswer(userAnswer) {
+      return ['exit', 'a', 'b', 'c', 'd'].indexOf(userAnswer) !== -1;
+    },
+  };
+
+  game.run();
+
 }
+console.clear();
 f();

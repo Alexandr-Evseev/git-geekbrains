@@ -16,7 +16,7 @@ if (a === b) {
 }
 \`\`\` 
 </p>`;
-
+console.clear();
 f();
 function f() {
 

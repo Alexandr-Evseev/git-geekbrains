@@ -5,7 +5,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
 7. Сравнить null и 0. Попробуйте объяснить результат.<br>
 Здесь нужно было объяснить следующие сравнения и их результат: null == 0, null > 0, null >= 0. Почему при null >= 0 true.
 </p>`;
-
+console.clear();
 f();
 
 function f() {

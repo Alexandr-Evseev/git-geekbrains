@@ -14,4 +14,5 @@ function f() {
         Ответ выведен в консоль.
        `;
 }
+console.clear();
 f();

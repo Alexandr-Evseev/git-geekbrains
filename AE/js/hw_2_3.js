@@ -7,7 +7,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
    - если а и b отрицательные, вывести их произведение;<br>
    - если а и b разных знаков, вывести их сумму;
 </p>`;
-
+console.clear();
 f();
 
 function f() {

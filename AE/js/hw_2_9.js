@@ -12,7 +12,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
 склонения слова (любого слова с числом) вам необходимо создать функцию.
 
 </p>`;
-
+console.clear();
 f();
 
 function f() {

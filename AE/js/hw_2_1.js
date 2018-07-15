@@ -4,7 +4,7 @@
 document.getElementById('descript').innerHTML = `<p> Задача: 
 1. Объясните почему код даёт именно такие результаты?
 </p>`;
-
+console.clear();
 f();
 
 function f() {

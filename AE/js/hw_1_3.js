@@ -12,7 +12,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
 10 / +"2,5"</p><p>
 \`\`\`
 </p>`;
-
+console.clear();
 f();
 
 function f() {

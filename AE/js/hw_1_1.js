@@ -8,7 +8,7 @@ document.getElementById('descript').innerHTML = `<p> Задача:
 Подсказка, расчёт идёт по формуле:
 Tf = (9 / 5) * Tc + 32, где Tf – температура по Фаренгейту, Tc – температура по Цельсию.
 </p>`;
-
+console.clear();
 f();
 
 function f() {

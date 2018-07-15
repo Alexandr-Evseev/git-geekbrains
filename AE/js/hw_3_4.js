@@ -2,15 +2,17 @@
 
 
 document.getElementById('descript').innerHTML = `<p> Задача:
-  вывести  с помощью  цикла for числа от 0 до 9, НЕ используя тело цикла. <br>
+Вывести пирамиду в консоль. 20 строк. <br>
 </p>`;
-
+console.clear();
 f();
 
 function f() {
 
-    for (let i = 0; i <10; console.log(i++)){}
-
+    for (let i = 0, x = "x"; i < 21; i++) {
+        console.log(x);
+        x = x + 'xx';
+    }
 
     document.getElementById('decision').innerHTML = `ответ выведен в консоль
     
